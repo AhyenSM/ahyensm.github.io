@@ -1971,7 +1971,7 @@
             }
 
 
-            function showPage(targetPageId) {
+            function showPage(targetPageId, pushState = true) {
                 // Re-fetch section elements to ensure they are current, as they might have been null previously
                 homeSection = document.getElementById('home');
                 personalSection = document.getElementById('personal');
@@ -2055,12 +2055,33 @@
 
                 resetScroll(); // Reset scroll position for the newly active page
                 setTimeout(handleScroll, 100); // Small delay to ensure scrollHeight is calculated
+
+                // --- MODIFICATIONS FOR BROWSER HISTORY START ---
+                // Update browser history
+                if (pushState) {
+                    const url = targetPageId === 'home' ? '/' : `#${targetPageId}`;
+                    history.pushState({ pageId: targetPageId }, document.title, url);
+                }
+                // --- MODIFICATIONS FOR BROWSER HISTORY END ---
             }
+
+            // --- MODIFICATIONS FOR BROWSER HISTORY START ---
+            // Event listener for browser's back/forward buttons
+            window.addEventListener('popstate', (event) => {
+                const pageId = event.state && event.state.pageId ? event.state.pageId : 'home';
+                showPage(pageId, false); // Don't push state again when navigating via history
+            });
+            // --- MODIFICATIONS FOR BROWSER HISTORY END ---
+
 
             // Initial load: show home page
             // Delay the initial showPage call to ensure all elements are definitively rendered
             setTimeout(() => {
-                showPage('home');
+                // --- MODIFICATIONS FOR BROWSER HISTORY START ---
+                const initialPageId = window.location.hash.substring(1); // Get page ID from URL hash
+                const pageToLoad = initialPageId && document.getElementById(initialPageId) ? initialPageId : 'home';
+                showPage(pageToLoad, false); // Load page based on hash, don't push new state
+                // --- MODIFICATIONS FOR BROWSER HISTORY END ---
             }, 100); // 100ms delay to give more time for DOM rendering
 
             // Event Listeners for navigation buttons
