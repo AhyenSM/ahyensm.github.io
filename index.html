@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahyen Samrial Mostofa - Personal Portfolio</title>
+    <!-- Updated favicon link -->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/AhyenSM/ahyensm.github.io/90de4433710162550f06b2aeb6672ce60085fab7/favicon.PNG">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -978,6 +980,134 @@
         }
         /* --- END ADDED STYLES --- */
 
+        /* --- STYLES FOR DETAILED EXPERIENCE PAGE --- */
+        #professional-experience { transform: translateX(100%); } /* Starts off-screen right */
+        #professional-experience.active { transform: translateX(0); opacity: 1; pointer-events: auto; }
+        #professional.hide-experience { opacity: 0; transform: translateX(-100%) scale(0.8); } /* Professional moves left */
+
+        /* Filter button styling */
+        .filter-btn {
+            padding: 0.65rem 1.25rem;
+            border-radius: 9999px; /* rounded-full */
+            font-weight: 600;
+            font-size: 0.9rem; /* sm */
+            border: 2px solid rgba(255, 107, 0, 0.4); /* Orange border */
+            color: #FFFFFF;
+            background-color: transparent;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            background-color: rgba(255, 107, 0, 0.1);
+            border-color: rgba(255, 107, 0, 0.8);
+        }
+
+        .filter-btn.active {
+            background-color: rgba(255, 107, 0, 0.2); /* Faint orange glow background */
+            border-color: rgba(255, 107, 0, 0.8); /* Brighter orange border */
+            color: #ff6b00; /* Orange text */
+            box-shadow: 0 0 25px rgba(255, 107, 0, 0.4), 0 0 10px rgba(34, 211, 238, 0.2);
+            transform: translateY(-2px) scale(1.02);
+        }
+        
+        /* Style for the "All" button when active */
+        .filter-btn[data-filter="all"].active {
+             background-color: rgba(34, 211, 238, 0.2); /* Cyan background */
+             border-color: rgba(34, 211, 238, 0.8); /* Brighter cyan border */
+             color: #22d3ee; /* Cyan text */
+             box-shadow: 0 0 25px rgba(34, 211, 238, 0.4), 0 0 10px rgba(255, 107, 0, 0.2);
+        }
+
+        /* Experience Card Styling - Merging timeline style with card content */
+        .experience-card {
+            position: relative;
+            padding: 1.5rem 2rem; /* p-6 equivalent */
+            background: rgba(34, 40, 49, 0.8); /* Darker background */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 107, 0, 0.3); /* Orange border */
+            transition: all 0.3s ease;
+        }
+        
+        .experience-card.current-experience {
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(255, 107, 0, 0.2)); /* Vibrant gradient */
+            border-color: #22d3ee; /* Stronger border */
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.6), 0 0 40px rgba(255, 107, 0, 0.4);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+        
+        /* Category/Type Tags */
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem; /* py-1 px-3 */
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 600; /* font-semibold */
+            border-radius: 9999px; /* rounded-full */
+        }
+        
+        /* Specific colors for tags, matching dark theme */
+        .tag-category-operations { background-color: rgba(59, 130, 246, 0.2); color: #93c5fd; } /* blue */
+        .tag-category-engineering { background-color: rgba(168, 85, 247, 0.2); color: #d8b4fe; } /* purple */
+        .tag-category-teaching { background-color: rgba(34, 197, 94, 0.2); color: #86efac; } /* green */
+        .tag-category-technical { background-color: rgba(249, 115, 22, 0.2); color: #fdba74; } /* orange */
+        .tag-category-consulting { background-color: rgba(236, 72, 153, 0.2); color: #f9a8d4; } /* pink */
+        .tag-category-admin { background-color: rgba(107, 114, 128, 0.2); color: #d1d5db; } /* gray */
+        .tag-category-marketing { background-color: rgba(20, 184, 166, 0.2); color: #6ee7b7; } /* teal */
+        .tag-category-product { background-color: rgba(139, 92, 246, 0.2); color: #c4b5fd; } /* violet */
+        .tag-category-management { background-color: rgba(217, 70, 239, 0.2); color: #f0abfc; } /* fuchsia */
+
+        .tag-type-full-time { background-color: rgba(74, 222, 128, 0.2); color: #bbf7d0; } /* emerald */
+        .tag-type-part-time { background-color: rgba(250, 204, 21, 0.2); color: #fef08a; } /* amber */
+        .tag-type-internship { background-color: rgba(99, 102, 241, 0.2); color: #c7d2fe; } /* indigo */
+        .tag-type-contract { background-color: rgba(244, 63, 94, 0.2); color: #fda4af; } /* rose */
+
+        /* Skill Tags */
+        .skill-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem; /* py-1 px-3 */
+            font-size: 0.8rem; /* text-xs, slightly smaller */
+            font-weight: 500; /* font-medium */
+            border-radius: 9999px; /* rounded-full */
+            background-color: rgba(203, 213, 225, 0.1); /* gray-300 @ 10% opacity */
+            color: #e2e8f0; /* gray-200 */
+            margin: 0.125rem; /* m-0.5 */
+            transition: all 0.2s ease;
+        }
+        .skill-tag:hover {
+            background-color: rgba(203, 213, 225, 0.2); /* gray-300 @ 20% opacity */
+            color: #fff;
+        }
+
+        /* Details section */
+        .details-content {
+            display: none; /* Hidden by default */
+            padding-top: 1rem;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Show more button */
+        .toggle-details-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem; /* gap-2 */
+            font-weight: 600; /* font-medium */
+            color: #22d3ee; /* cyan-400 */
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .toggle-details-btn:hover {
+            color: #67e8f9; /* cyan-300 */
+        }
+        /* --- END STYLES FOR DETAILED EXPERIENCE PAGE --- */
+
     </style>
 </head>
 <body>
@@ -1253,6 +1383,14 @@
 
                     <!-- --- MODIFIED: Added id="work-experience-section" --- -->
                     <h3 id="work-experience-section" class="text-4xl sm:text-5xl font-black mt-16 mb-10 text-center bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Work Experience</h3>
+                    
+                    <!-- === ADDED BUTTON === -->
+                    <a href="#professional-experience" id="show-detailed-experience-btn" class="inline-block -mt-4 mb-10 text-lg text-cyan-400 hover:text-cyan-300 font-medium transition-all group">
+                        Find detailed view of my Professional Experience
+                        <span class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-cyan-400"></span>
+                    </a>
+                    <!-- === END ADDED BUTTON === -->
+                    
                     <div class="timeline">
                         <div class="timeline-item left current-experience">
                             <div class="timeline-content-wrapper">
@@ -1379,7 +1517,7 @@
 
                     <!-- --- MODIFIED: Added id="skills-section" --- -->
                     <h3 id="skills-section" class="text-4xl sm:text-5xl font-black mt-16 mb-8 text-center bg-gradient-to-r from-green-400 to-lime-400 bg-clip-text text-transparent">Skills & Abilities</h3>
-                    <div class="flex flex-wrap justify-center gap-3 sm:gap-4 text-lg sm:text-xl w-full lg:max-w-4xl px-4 text-center mb-12">
+<div class="flex flex-wrap justify-center gap-3 sm:gap-4 text-xl sm:text-2xl w-full lg:max-w-4xl px-4 text-center mb-12">
                         <span class="skill-tag px-4 py-2 rounded-full bg-blue-700/30 border border-blue-500/50">MS Office (Word, Excel, PowerPoint, Outlook, OneDrive, Sharepoint, Project, Visio & Forms)</span>
                         <span class="skill-tag px-4 py-2 rounded-full bg-green-700/30 border border-green-500/50 whitespace-nowrap">AutoCAD Electrical</span>
                         <span class="skill-tag px-4 py-2 rounded-full bg-yellow-700/30 border border-yellow-500/50 whitespace-nowrap">Rockwell Software Studio 5000</span>
@@ -1517,8 +1655,16 @@
                         </div>
                     </div>
 
-                    <h3 class="text-4xl sm:text-5xl font-black mt-16 mb-8 text-center bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">Awards & Achievements</h3>
+                                        <h3 class="text-4xl sm:text-5xl font-black mt-16 mb-8 text-center bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">Awards & Achievements</h3>
                     <div class="space-y-8 mb-12 w-full px-4">
+                        <div class="bg-gray-800/60 p-6 rounded-xl border border-red-500/40 shadow-lg flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                            <div class="text-left">
+                                <p class="text-xl font-bold text-red-300">🚀 Shell.ai Hackathon for Sustainable and Affordable Energy 2025</p>
+                                <p class="text-lg text-gray-200 mt-2">Finalist - First runner up [Startup Edition] - As a member of the AISCIA Informatics team</p>
+                            </div>
+                            <span class="text-lg font-semibold text-gray-300 mt-4 sm:mt-0 sm:text-right">Sep 2025</span>
+                        </div>
+
                         <div class="bg-gray-800/60 p-6 rounded-xl border border-orange-500/40 shadow-lg flex flex-col sm:flex-row justify-between items-start sm:items-center">
                             <div class="text-left">
                                 <p class="text-xl font-bold text-orange-300">🏆 Skills Day Competitions Award Medals (UDST)</p>
@@ -1683,6 +1829,71 @@
             </div>
         </section>
 
+        <!-- === ADDED NEW PROFESSIONAL EXPERIENCE SECTION === -->
+        <section id="professional-experience" class="page-section bg-gradient-to-bl from-cyan-900/20 to-orange-900/20">
+            <div class="content-wrapper">
+                <main class="w-full max-w-6xl mx-auto flex-grow flex flex-col"> <!-- MODIFIED: flex-col -->
+                    <!-- Header -->
+                    <div class="mb-10 text-center">
+                        <h1 class="text-5xl md:text-6xl font-black text-white mb-4 bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent">Professional Experience</h1>
+                        <p class="text-xl text-gray-300">A journey through diverse roles in engineering, operations, and education.</p>
+                         <!-- MODIFIED BUTTON -->
+                         <button id="back-to-professional-btn" class="inline-block mt-6 text-lg text-cyan-400 hover:text-cyan-300 font-medium transition-all group">
+                            &larr; Back to Professional Overview
+                            <span class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-cyan-400"></span>
+                        </button>
+                    </div>
+
+                    <!-- Filter Section -->
+                    <div id="filter-container" class="mb-8 flex flex-wrap gap-3 justify-center items-center backdrop-blur-sm bg-gray-900/30 p-4 rounded-xl shadow-lg">
+                        <!-- Filter buttons will be dynamically inserted here by JavaScript -->
+                    </div>
+
+                    <!-- Timeline / Experience Cards -->
+                    <div id="timeline-container" class="relative space-y-6">
+                        <!-- Experience cards will be dynamically inserted here by JavaScript -->
+                    </div>
+                    
+                    <!-- === ADDED GO BACK BUTTON === -->
+                    <button id="pro-exp-back-btn" class="nav-block mt-16 w-auto h-auto text-xl !py-4 !px-8 font-bold self-center">← Go Back</button>
+                    
+                    <!-- === FOOTER REPLACED AND MOVED === -->
+                    <!-- The footer will be placed outside the main element by the flex-col layout of content-wrapper -->
+                </main>
+
+                <!-- === REPLACED FOOTER === -->
+                <!-- This footer now matches the 'home' page footer with fa-3x icons and all links -->
+                <footer class="w-full mt-auto pt-16"> <!-- mt-auto pushes to bottom, pt-16 for spacing -->
+                    <div class="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 px-4">
+                        <a href="https://www.instagram.com/ahyensamrialmostofa/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-orange-400 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-instagram fa-3x"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ahyensm/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-linkedin-in fa-3x"></i>
+                        </a>
+                        <a href="https://x.com/AhyenMostofa" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-pink-400 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-x-twitter fa-3x"></i>
+                        </a>
+                        <a href="https://github.com/AhyenSM" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-gray-500 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-github fa-3x"></i>
+                        </a>
+                        <a href="https://wa.me/97466439780?text=hi%2C%20i%27m%20interested%20to%20connect%20with%20you" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-green-500 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-whatsapp fa-3x"></i>
+                        </a>
+                        <a href="https://www.pinterest.com/ahyenmostofa/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-red-600 transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-pinterest fa-3x"></i>
+                        </a>
+                        <a href="mailto:ahyen-samrial-mostofa@outlook.com" class="text-gray-300 hover:text-green-400 transition-all duration-300 transform hover:scale-110">
+                            <i class="fas fa-envelope fa-3x"></i>
+                        </a>
+                    </div>
+                    <p class="mt-6 text-base text-gray-400 font-medium">ahyen-samrial-mostofa@outlook.com</p>
+                    <p class="mt-2 text-base text-gray-400 font-medium">&copy; 2025 Ahyen Samrial Mostofa. All rights reserved.</p>
+                </footer>
+            </div>
+        </section>
+        <!-- === END ADDED SECTION === -->
+
     </div>
 
     <!-- Scroll buttons -->
@@ -1770,6 +1981,7 @@
         let professionalSection;
         let academicsSection;
         let projectsSection; // <-- ADDED
+        let professionalExperienceSection; // <-- ADDED
         let pageContainer;
 
         // Books Carousel Logic
@@ -1938,6 +2150,7 @@
             professionalSection = document.getElementById('professional');
             academicsSection = document.getElementById('academics'); // Ensure this is fetched
             projectsSection = document.getElementById('projects'); // <-- ADDED
+            professionalExperienceSection = document.getElementById('professional-experience'); // <-- ADDED
             pageContainer = document.getElementById('page-container');
 
             // Log the status of key sections immediately after trying to get them
@@ -1946,6 +2159,7 @@
             console.log('Professional Section Element:', professionalSection);
             console.log('Academics Section Element:', academicsSection);
             console.log('Projects Section Element:', projectsSection); // <-- ADDED
+            console.log('Professional Experience Section Element:', professionalExperienceSection); // <-- ADDED
             console.log('Page Container Element:', pageContainer);
 
             // Audio elements - moved initialization here for clarity
@@ -1974,7 +2188,7 @@
             // Initial checks for critical elements - removed the `console.error` here
             // as the showPage function now robustly re-fetches and checks.
             // Keeping this check to be robust, but without immediate console error.
-            if (!homeSection || !personalSection || !professionalSection || !academicsSection || !projectsSection || !pageContainer) { // <-- ADDED projectsSection
+            if (!homeSection || !personalSection || !professionalSection || !academicsSection || !projectsSection || !professionalExperienceSection) { // <-- MODIFIED
                 // This condition might be true on initial script load if elements aren't ready,
                 // but showPage will re-evaluate.
             }
@@ -2113,6 +2327,7 @@
                 professionalSection = document.getElementById('professional');
                 academicsSection = document.getElementById('academics'); // Crucial re-fetch
                 projectsSection = document.getElementById('projects'); // <-- ADDED
+                professionalExperienceSection = document.getElementById('professional-experience'); // <-- ADDED
                 pageContainer = document.getElementById('page-container');
 
                 // Critical element checks with specific error messages using global variables
@@ -2121,11 +2336,13 @@
                 if (!professionalSection) { console.error("Error: professionalSection is null. Page transitions might not function correctly."); return; }
                 if (!academicsSection) { console.error("Error: academicsSection is null. Page transitions might not function correctly."); return; }
                 if (!projectsSection) { console.error("Error: projectsSection is null. Page transitions might not function correctly."); return; } // <-- ADDED
+                if (!professionalExperienceSection) { console.error("Error: professionalExperienceSection is null. Page transitions might not function correctly."); return; } // <-- ADDED
                 if (!pageContainer) { console.error("Error: pageContainer is null. Page transitions might not function correctly."); return; }
 
 
                 // Remove all hide classes from home to prepare for new transition
                 homeSection.classList.remove('hide-personal', 'hide-professional', 'hide-academics', 'hide-projects'); // <-- MODIFIED
+                professionalSection.classList.remove('hide-experience'); // <-- ADDED
 
                 let activePage = document.querySelector('.page-section.active');
 
@@ -2135,7 +2352,9 @@
                         if (targetPageId === 'personal') homeSection.classList.add('hide-personal');
                         else if (targetPageId === 'professional') homeSection.classList.add('hide-professional');
                         else if (targetPageId === 'academics') homeSection.classList.add('hide-academics');
-                        else if (targetPageId === 'projects') homeSection.classList.add('hide-projects'); // <-- ADDED
+                        else if (targetPageId === 'projects') homeSection.classList.add('hide-projects'); // <-- MODIFIED
+                    } else if (activePage.id === 'professional' && targetPageId === 'professional-experience') { // <-- ADDED
+                        professionalSection.classList.add('hide-experience'); // New transition
                     }
                 }
 
@@ -2146,6 +2365,7 @@
                     case 'professional': targetPage = professionalSection; break;
                     case 'academics': targetPage = academicsSection; break;
                     case 'projects': targetPage = projectsSection; break; // <-- ADDED
+                    case 'professional-experience': targetPage = professionalExperienceSection; break; // <-- ADDED
                     default: console.error(`Unknown target page ID: ${targetPageId}`); return;
                 }
 
@@ -2244,6 +2464,29 @@
                     showPage('projects');
                 });
             }
+            const showDetailedExperienceBtn = document.getElementById('show-detailed-experience-btn'); // <-- ADDED
+            if (showDetailedExperienceBtn) { // <-- ADDED
+                showDetailedExperienceBtn.addEventListener('click', (e) => { // <-- ADDED
+                    e.preventDefault(); // <-- ADDED
+                    showPage('professional-experience'); // <-- ADDED
+                }); // <-- ADDED
+            } // <-- ADDED
+            const backToProfessionalBtn = document.getElementById('back-to-professional-btn'); // <-- ADDED
+            if (backToProfessionalBtn) { // <-- ADDED
+                backToProfessionalBtn.addEventListener('click', () => { // <-- ADDED
+                    showPage('professional'); // <-- ADDED
+                }); // <-- ADDED
+            } // <-- ADDED
+
+            // === ADDED EVENT LISTENER FOR NEW BACK BUTTON ===
+            const proExpBackBtn = document.getElementById('pro-exp-back-btn');
+            if (proExpBackBtn) {
+                proExpBackBtn.addEventListener('click', () => {
+                    showPage('professional');
+                });
+            }
+            // === END ADDED EVENT LISTENER ===
+
             backButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     showPage('home');
@@ -2554,8 +2797,513 @@
 
             // Initial call to start carousel on personal page load if it's the active page
             // This is now handled within the showPage function to ensure it only starts when 'personal' is active.
-        };
 
+            
+            // --- DETAILED EXPERIENCE PAGE SCRIPT ---
+            // Data strictly from Ahyen_CV_Updated 2025.pdf
+            const experiences = [
+                {
+                  id: 1,
+                  title: "Operations and Project Engineer",
+                  company: "AISCIA Informatics LLC.",
+                  location: "Qatar Science and Technology Park, Education City - Qatar",
+                  period: "Sep 2025 - Present",
+                  type: "full-time", // Inferred
+                  category: "engineering", // CHANGED per request
+                  current: true,
+                  highlights: [
+                    "Providing support to R&D projects and overseeing administrative aspects of project execution.",
+                    "Leading engineering and procurement processes for the Self-Driving Lab (SDL) Projects.",
+                    "Coordinating the development and implementation of Digital Twin solutions."
+                  ],
+                  details: [
+                    "Collaborating with the battery research team on data analysis and solution integration.",
+                    "Utilizing time-series analysis and forecasting to develop and enhance Al solutions.",
+                    "Representing AISCIA at industry events, conferences, and expos, while networking and building key relationships.",
+                    "Driving sales and managing communication for Software for Chemistry and Materials (SCM) across the GCC region."
+                  ],
+                  skills: ["Project Engineering", "R&D Support", "Procurement", "Digital Twin", "Data Analysis", "AI Solutions", "Sales (SCM)"] // ADDED
+                },
+                {
+                  id: 2,
+                  title: "Operations and Marketing Assistant",
+                  company: "AISCIA Informatics LLC.",
+                  location: "Qatar Science and Technology Park, Education City - Qatar",
+                  period: "May 2025 - Sep 2025",
+                  type: "full-time", // Inferred from QSTP Program
+                  category: "operations",
+                  current: false,
+                  highlights: [
+                    "Provided comprehensive operational and administrative support including R&D projects.",
+                    "QSTP Internship Program Spring 2025.",
+                    "Facilitated the onboarding and integration of work-placement interns."
+                  ],
+                  details: [
+                    "Designed and managed procurement and process automation for Self-Driving Lab concepts.",
+                    "Represented the company at industry events, expos, and competitions.",
+                    "Showcased early-stage Al-driven solutions to potential clients and stakeholders."
+                  ],
+                  skills: ["Operations Support", "Marketing", "Process Automation", "Procurement", "Self-Driving Labs", "Event Management"] // ADDED
+                },
+                {
+                  id: 3,
+                  title: "Operations and Product development Intern",
+                  company: "AISCIA Informatics LLC.",
+                  location: "Qatar Science and Technology Park, Education City - Qatar",
+                  period: "Jan 2025 - May 2025",
+                  type: "part-time", // Explicitly stated in CV
+                  category: "operations",
+                  current: false,
+                  highlights: [
+                    "QSTP Internship Program Winter 2025.",
+                    "Provided Operational, administrative and office support, testing and demonstrating AISCIA's Al driven solutions."
+                  ],
+                  details: [
+                    "Participated and represented AISCIA in Expos, Hackathons, Events and Competitions."
+                  ],
+                  skills: ["Operations Support", "Product Testing", "AI Solutions", "Event Participation"] // ADDED
+                },
+                {
+                  id: 4,
+                  title: "Robotics Teacher",
+                  company: "Bricklyn Lego Education",
+                  location: "Duhail - Qatar",
+                  period: "Jan 2025 - May 2025",
+                  type: "part-time", // Explicitly stated in CV
+                  category: "teaching",
+                  current: false,
+                  highlights: [
+                    "Developed and delivered engaging robotics lessons for students of various age groups.",
+                    "Guided students in building, programming, and troubleshooting robotics projects."
+                  ],
+                  details: [
+                    "Utilized educational tools like LEGO Robotics, Spike Prime, Arduino and Python to enhance learning.",
+                    "Fostered collaborative classroom environment that encourages creativity and problem-solving."
+                  ],
+                  skills: ["Robotics", "Teaching", "Curriculum Development", "LEGO Spike Prime", "Arduino", "Python"] // ADDED
+                },
+                {
+                  id: 5,
+                  title: "Customer Service, Operational and User Experience Consultancy",
+                  company: "University of Doha for Science and Technology",
+                  location: "Duhail - Qatar",
+                  period: "Nov 2024 - Dec 2024",
+                  type: "contract", // Inferred from "Short Term"
+                  category: "consulting",
+                  current: false,
+                  highlights: [
+                    "Managed E-Gaming Arena operations, including bookings, equipment maintenance, and user engagement.",
+                    "Collaborated with IT and stakeholders to resolve technical issues and prepare for e-gaminng tournaments."
+                  ],
+                  details: [
+                    "Designed marketing materials and implemented policies to enhance user experience."
+                  ],
+                  skills: ["UX Consultancy", "Customer Service", "Operations Management", "Event Planning", "Marketing"] // ADDED
+                },
+                {
+                  id: 6,
+                  title: "Sports and Wellness Student Admin Assistant",
+                  company: "University of Doha for Science and Technology",
+                  location: "Duhail - Qatar",
+                  period: "Jul 2022 - Sep 2024",
+                  type: "part-time", // Explicitly stated in CV
+                  category: "consulting", // CHANGED per request
+                  current: false,
+                  highlights: [
+                    "Assisted in management operations, budgeting, and inventory tracking.",
+                    "Handled announcements, emailers, and operational support for Junior Wolves Club.",
+                    "Managed reservations, scheduling, and reports via Planyo reservation platform."
+                  ],
+                  details: [
+                    "Supported equipment procurement and event planning research.",
+                    "Supervised customer service desk and point-of-sale operations.",
+                    "FIFA 2022: Managed ball boy volunteers, laundry ops, and venue access for Switzerland Team at UDST.",
+                    "Wolves Mascot Rack: Collaborated with UDST Engineering College on design, measurements & variable analysis."
+                  ],
+                  skills: ["Operations Management", "Consultancy", "Budgeting", "Event Management", "Customer Service", "Planyo", "Volunteer Management"] // ADDED
+                },
+                {
+                  id: 7,
+                  title: "Electrical Engineering Project Manager",
+                  company: "University of Doha for Science and Technology",
+                  location: "Duhail - Qatar",
+                  period: "May 2023 - Jul 2023",
+                  type: "internship", // Explicitly stated in CV
+                  category: "engineering",
+                  current: false,
+                  highlights: [
+                    "Utilized DiaLux Evo for simulating required lighting levels.",
+                    "Performed Case Study on UAV usage for Sport Lighting Analysis."
+                  ],
+                  details: [
+                    "Conducted lux level grid analysis for football, cricket & tennis facilities, aligned with FIFA, ICC & ITF lighting standards.",
+                    "Delivered technical reports, presentations, and communicated findings effectively."
+                  ],
+                  skills: ["Project Management", "DiaLux Evo", "Lighting Analysis", "UAV", "Technical Reporting", "FIFA/ICC Standards"] // ADDED
+                },
+                {
+                  id: 8,
+                  title: "Project Coordinator/Document Controller",
+                  company: "Twelvers Trading and Contracting",
+                  location: "Doha - Qatar",
+                  period: "Aug 2021 - Jan 2022",
+                  type: "full-time", // Inferred
+                  category: "operations", // Admin/Coordination
+                  current: false,
+                  highlights: [
+                    "Managed and maintained record of Personal information, Health records and Certifications of Manpower.",
+                    "Prepared, Updated & Digitalized document (Gate/work site passes, internal letters), Attending Emails, Data Entry."
+                  ],
+                  details: [
+                    "Connected with company PRO for employee/manpower documentation updates.",
+                    "Managed and maintained employee absentee records."
+                  ],
+                  skills: ["Document Control", "Data Management", "HR Administration", "Coordination"] // ADDED
+                },
+                {
+                  id: 9,
+                  title: "Home Automation Technician",
+                  company: "Tech It Easy",
+                  location: "Lusail - Qatar",
+                  period: "Apr 2021 - Jul 2022",
+                  type: "part-time", // Explicitly stated in CV
+                  category: "technical",
+                  current: false,
+                  highlights: [
+                    "Connected, troubleshot and configured smart (IOT) devices with home assistant devices & smartphone."
+                  ],
+                  details: [
+                    "Demonstrated application(s) installation and syncing of home automation devices to customers."
+                  ],
+                  skills: ["IoT", "Home Automation", "Troubleshooting", "Customer Support"] // ADDED
+                },
+                {
+                  id: 10,
+                  title: "Peer Tutor",
+                  company: "College of the North Atlantic-Qatar",
+                  location: "Duhail - Qatar",
+                  period: "Dec 2018 - Aug 2019",
+                  type: "part-time", // Explicitly stated in CV
+                  category: "teaching",
+                  current: false,
+                  highlights: [
+                    "Tutored, physics, basics of electrical and motor control courses - at scheduled meeting in and outside the college."
+                  ],
+                  details: [
+                    "Scheduled tutoring sessions, maintained timesheet and confidentiality as per standards."
+                  ],
+                  skills: ["Tutoring", "Physics", "Electrical Engineering", "Motor Control"] // ADDED
+                },
+                {
+                  id: 11,
+                  title: "IDP IELTS Invigilator",
+                  company: "College of the North Atlantic-Qatar",
+                  location: "Duhail - Qatar",
+                  period: "Jan 2018 - May 2018",
+                  type: "part-time", // Explicitly stated in CV
+                  category: "operations", // Admin/Invigilation
+                  current: false,
+                  highlights: [
+                    "Handled text papers, documents, arranged and invigilated allotted exam room."
+                  ],
+                  details: [
+                    "Verified identity of candidates, Submitted report forms and maintained confidentiality as per standards."
+                  ],
+                  skills: ["Invigilation", "Document Handling", "Confidentiality"] // ADDED
+                }
+            ];
+            
+            // Get the containers within the new section
+            const expSection = document.getElementById('professional-experience');
+            // Make sure to query *within* the expSection to avoid conflicts
+            const filterContainer = expSection.querySelector('#filter-container');
+            const timelineContainer = expSection.querySelector('#timeline-container');
+            let currentFilter = 'all';
+
+            const monthMap = { 'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5, 'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11 };
+            
+            // We use a fixed "Present" date for consistent calculations based on CV context
+            // CV date is 2025, current role started Sep 2025. Use Nov 2025 as "Present".
+            const presentDate = new Date(2025, 10, 1); // 1st Nov 2025
+
+            /**
+             * Calculates the duration in months from a period string like "Sep 2025 - Present"
+             */
+            function getDurationInMonths(periodStr) {
+                try {
+                    const parts = periodStr.split(' - ');
+                    const [startMonth, startYear] = parts[0].split(' ');
+                    
+                    let endDate;
+                    if (parts[1].toLowerCase() === 'present') {
+                        endDate = presentDate;
+                    } else {
+                        const [endMonth, endYear] = parts[1].split(' ');
+                        endDate = new Date(parseInt(endYear), monthMap[endMonth]);
+                    }
+                    
+                    const startDate = new Date(parseInt(startYear), monthMap[startMonth]);
+                    
+                    // Calculate difference in months
+                    let months = (endDate.getFullYear() - startDate.getFullYear()) * 12;
+                    months -= startDate.getMonth();
+                    months += endDate.getMonth();
+                    
+                    return months + 1; // Inclusive of start and end month
+                } catch (e) {
+                    console.error(`Could not parse period string: "${periodStr}"`, e);
+                    return 0;
+                }
+            }
+
+            /**
+             * Formats a total number of months into a "X years, Y months" string
+             */
+            function formatDuration(totalMonths) {
+                if (totalMonths === 0) return "0 months";
+                
+                const years = Math.floor(totalMonths / 12);
+                const months = totalMonths % 12;
+                
+                let parts = [];
+                if (years > 0) parts.push(`${years} year${years > 1 ? 's' : ''}`);
+                if (months > 0) parts.push(`${months} month${months > 1 ? 's' : ''}`);
+                
+                return parts.join(', ');
+            }
+
+            /**
+             * Calculates counts and total durations for all categories
+             */
+            function getCategoryData() {
+                const categories = {
+                    'all': { count: 0, months: 0, label: 'All Experiences' }
+                    // Other categories will be added dynamically
+                };
+
+                experiences.forEach(exp => {
+                    const duration = getDurationInMonths(exp.period);
+                    
+                    // Add to 'all'
+                    categories.all.count++;
+                    categories.all.months += duration;
+                    
+                    // Add to specific category
+                    if (!categories[exp.category]) {
+                        categories[exp.category] = { 
+                            count: 0, 
+                            months: 0,
+                            // Capitalize the first letter for the label
+                            label: exp.category.charAt(0).toUpperCase() + exp.category.slice(1)
+                        };
+                    }
+                    categories[exp.category].count++;
+                    categories[exp.category].months += duration;
+                });
+                
+                return categories;
+            }
+
+            /**
+             * Renders the filter buttons with counts and durations
+             */
+            function renderFilterButtons(categories) {
+                if (!filterContainer) return;
+                filterContainer.innerHTML = ''; // Clear existing
+                
+                // Sort categories, putting 'all' first
+                const sortedKeys = Object.keys(categories).sort((a, b) => {
+                    if (a === 'all') return -1;
+                    if (b === 'all') return 1;
+                    // Sort other categories by count, descending
+                    return categories[b].count - categories[a].count;
+                });
+
+                sortedKeys.forEach(key => {
+                    const cat = categories[key];
+                    const button = document.createElement('button');
+                    button.className = `filter-btn ${key === currentFilter ? 'active' : ''}`;
+                    button.dataset.filter = key;
+                    
+                    // Format text as requested: "Operations (6) - 1 year, 5 months"
+                    button.innerHTML = `
+                        ${cat.label} (${cat.count})
+                        <span class="hidden sm:inline"> - ${formatDuration(cat.months)}</span>
+                    `;
+                    
+                    button.addEventListener('click', () => {
+                        currentFilter = key;
+                        renderExperienceCards(); // Re-render cards
+                        // Update active state on buttons
+                        expSection.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                    });
+                    
+                    filterContainer.appendChild(button);
+                });
+                 // Add filter icon
+                const icon = document.createElement('span');
+                icon.className = 'text-cyan-400 order-first mr-2';
+                icon.innerHTML = '<i class="fas fa-filter fa-lg"></i>';
+                filterContainer.prepend(icon);
+            }
+
+            /**
+             * Renders the experience cards based on the current filter
+             */
+            function renderExperienceCards() {
+                if (!timelineContainer) return;
+                timelineContainer.innerHTML = ''; // Clear existing
+                
+                const filtered = experiences.filter(exp => 
+                    currentFilter === 'all' || exp.category === currentFilter
+                );
+                
+                filtered.forEach(exp => {
+                    const card = document.createElement('div');
+                    card.className = `experience-card ${exp.current ? 'current-experience' : ''}`;
+                    
+                    const highlightsHTML = exp.highlights.map(h => `
+                        <li class="flex items-start gap-2 text-gray-300">
+                          <span class="text-orange-400 mt-1.5 flex-shrink-0"><i class="fas fa-xs fa-caret-right"></i></span>
+                          <span>${h}</span>
+                        </li>
+                    `).join('');
+                    
+                    // --- MODIFIED LOGIC ---
+                    const detailsHTML = (exp.details && exp.details.length > 0) ? exp.details.map(d => `
+                        <li class="flex items-start gap-2 text-gray-300">
+                          <span class="text-cyan-400 mt-1.5 flex-shrink-0"><i class="fas fa-xs fa-chevron-right"></i></span>
+                          <span>${d}</span>
+                        </li>
+                    `).join('') : '';
+
+                    let skillsHTML = '';
+                    if (exp.skills && exp.skills.length > 0) {
+                        const skillsList = exp.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('');
+                        skillsHTML = `
+                            <div class="${detailsHTML ? 'mt-4' : ''}"> <!-- Add margin-top only if details are also present -->
+                                <h4 class="font-semibold text-orange-400 mb-2">Skills & Technologies:</h4>
+                                <div class="flex flex-wrap -m-0.5">
+                                    ${skillsList}
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    let collapsibleHTML = '';
+                    if (detailsHTML || skillsHTML) {
+                        collapsibleHTML = `
+                            <!-- Details (collapsible) -->
+                            <div id="details-${exp.id}" class="details-content">
+                                ${detailsHTML ? `
+                                    <h4 class="font-semibold text-orange-400 mb-3">Additional Details:</h4>
+                                    <ul class="space-y-2 mb-4">${detailsHTML}</ul>
+                                ` : ''}
+                                ${skillsHTML}
+                            </div>
+                            
+                            <!-- Expand Button -->
+                            <div 
+                                class="toggle-details-btn mt-4" 
+                                data-id="${exp.id}" 
+                                role="button" 
+                                tabindex="0" 
+                                aria-expanded="false" 
+                                aria-controls="details-${exp.id}"
+                            >
+                                <i class="fas fa-chevron-down"></i>
+                                <span>Show more details</span>
+                            </div>
+                        `;
+                    }
+                    // --- END MODIFIED LOGIC ---
+
+                    card.innerHTML = `
+                        <!-- Header -->
+                        <div class="flex flex-col md:flex-row items-start justify-between gap-4 mb-3">
+                            <div class="flex-1 min-w-0">
+                                <h3 class="text-2xl font-bold text-white mb-2">${exp.title}</h3>
+                                <div class="flex items-center gap-3 text-lg text-gray-200 mb-1">
+                                    <i class="fas fa-briefcase text-orange-400"></i>
+                                    <span class="font-medium">${exp.company}</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-gray-400 mb-2">
+                                    <i class="fas fa-map-marker-alt text-orange-400"></i>
+                                    <span>${exp.location}</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-gray-400">
+                                    <i class="fas fa-calendar-alt text-orange-400"></i>
+                                    <span>${exp.period}</span>
+                                    ${exp.current ? `
+                                        <span class="ml-2 px-3 py-0.5 tag bg-green-500/30 text-green-300 text-xs font-semibold rounded-full animate-pulse">
+                                          Current
+                                        </span>
+                                    ` : ''}
+                                </div>
+                            </div>
+                            <!-- Tags -->
+                            <div class="flex flex-row md:flex-col gap-2 items-start md:items-end flex-shrink-0">
+                                <span class="tag tag-category-${exp.category}">
+                                    ${exp.category.charAt(0).toUpperCase() + exp.category.slice(1)}
+                                </span>
+                                <span class="tag tag-type-${exp.type.replace('-', '')}">
+                                    ${exp.type.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('-')}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Highlights -->
+                        <ul class="space-y-2 mb-4">${highlightsHTML}</ul>
+
+                        ${collapsibleHTML}
+                    `;
+                    
+                    timelineContainer.appendChild(card);
+                });
+            }
+
+            /**
+             * Handles click events on the "Show more/less" buttons
+             */
+            if (timelineContainer) {
+                timelineContainer.addEventListener('click', (e) => {
+                    const toggleBtn = e.target.closest('.toggle-details-btn');
+                    if (!toggleBtn) return;
+                    
+                    const id = toggleBtn.dataset.id;
+                    const detailsEl = expSection.querySelector(`#details-${id}`); // Scope query to the section
+                    const icon = toggleBtn.querySelector('i');
+                    const text = toggleBtn.querySelector('span');
+                    
+                    if (!detailsEl) return;
+                    
+                    const isExpanded = detailsEl.style.display === 'block';
+                    
+                    if (isExpanded) {
+                        detailsEl.style.display = 'none';
+                        icon.className = 'fas fa-chevron-down';
+                        text.textContent = 'Show more details';
+                        toggleBtn.setAttribute('aria-expanded', 'false');
+                    } else {
+                        detailsEl.style.display = 'block';
+                        icon.className = 'fas fa-chevron-up';
+                        text.textContent = 'Show less';
+                        toggleBtn.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            }
+
+            // --- Initial Load ---
+            // Run functions only if the containers exist
+            if(filterContainer && timelineContainer) {
+                const categoryData = getCategoryData();
+                renderFilterButtons(categoryData);
+                renderExperienceCards();
+            }
+            // --- END DETAILED EXPERIENCE PAGE SCRIPT ---
+        };
+ 
         // Call the initialize function once the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', initializePage);
     </script>
